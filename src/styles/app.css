@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Dark theme base */
+@layer base {
+  html { @apply h-full; }
+  body { @apply h-full bg-gray-950 text-gray-100 antialiased; }
+  :root {
+    /* Inform UA we use dark palette for native UI like scrollbars */
+    color-scheme: dark;
+    /* Firefox scrollbar */
+    scrollbar-color: #334155 #0b1220; /* thumb track */
+    scrollbar-width: thin;
+  }
+  /* WebKit-based scrollbars (Chromium, Safari, Tauri webviews) */
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  *::-webkit-scrollbar-track {
+    background: #0b1220; /* darker than bg-gray-950 for contrast */
+    border-radius: 9999px;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(99,102,241,0.35), rgba(34,197,94,0.35)); /* brand -> emerald */
+    border-radius: 9999px;
+    border: 2px solid #0b1220; /* creates padding around thumb */
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, rgba(99,102,241,0.6), rgba(34,197,94,0.6));
+  }
+  *::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+  /* Ensure stable layout when scrollbars appear */
+  body { scrollbar-gutter: stable both-edges; }
+}
+
+/* Components */
+@layer components {
+  .card { @apply bg-gray-900/60 backdrop-blur border border-gray-800 rounded-xl shadow-sm; }
+  .card-header { @apply text-gray-300 uppercase tracking-wider text-xs mb-3; }
+  .btn { @apply inline-flex items-center justify-center px-3 py-2 rounded-md text-sm font-medium transition-colors; }
+  .btn-primary { @apply bg-brand-600 hover:bg-brand-500 text-white; }
+  .btn-muted { @apply bg-gray-800 hover:bg-gray-700 text-gray-200; }
+  .input { @apply w-full rounded-md bg-gray-900 border border-gray-800 text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-transparent; }
+  .section { @apply card p-6; }
+  .section-title { @apply text-xl font-semibold text-gray-100 mb-4; }
+}
+
+/* Utilities */
+@layer utilities {
+  .muted { @apply text-gray-400; }
+}
+
